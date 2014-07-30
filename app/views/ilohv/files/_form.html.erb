@@ -27,6 +27,17 @@
   </div>
 
   <div class="form-group">
+    <%= f.label :file, class: 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
+      <%- if @file.file? -%>
+        Current file: <%= File.basename(@file.file.path) %>
+      <%- end -%>
+      <%= f.hidden_field :file_cache %>
+      <%= f.file_field :file, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
       <%= f.submit class: 'btn btn-primary' %> or
       <%= link_to 'cancel', @file.parent ? ilohv_path(@file.parent.path) : root_path %>

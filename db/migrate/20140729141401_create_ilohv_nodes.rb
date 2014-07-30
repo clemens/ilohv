@@ -6,6 +6,9 @@ class CreateIlohvNodes < ActiveRecord::Migration
       t.string :name
       t.text :full_path
 
+      t.string :file
+      t.text :meta_data
+
       t.text :ancestry
 
       t.timestamps

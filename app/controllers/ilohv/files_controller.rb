@@ -6,6 +6,7 @@ module Ilohv
     before_action :build_file, only: [:new, :create]
 
     def show
+      send_data @file.file.read, content_type: @file.content_type
     end
 
     def new
@@ -50,7 +51,7 @@ module Ilohv
 
     def file_params
       params[:file] ||= {}
-      params[:file].permit(:name)
+      params[:file].permit(:name, :file)
     end
 
   end

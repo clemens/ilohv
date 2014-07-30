@@ -1,0 +1,35 @@
+<%= form_for(@directory, as: 'directory', url: directories_path, html: { class: 'form-horizontal' }) do |f| %>
+  <% if @directory.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@directory.errors.count, "error") %> prohibited this directory from being saved:</h2>
+
+      <ul>
+      <% @directory.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= hidden_field_tag :parent_id, @directory.parent_id %>
+    <%= f.label :parent_id, 'Parent directory', class: 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.text_field :parent_id, value: @directory.parent.try(:full_path), class: 'form-control', disabled: true %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :name, class: 'col-lg-2 control-label' %>
+    <div class="col-lg-10">
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <%= f.submit class: 'btn btn-primary' %> or
+      <%= link_to 'cancel', @directory.parent ? ilohv_path(@directory.parent.path) : root_path %>
+    </div>
+  </div>
+<% end %>

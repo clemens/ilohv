@@ -1,0 +1,46 @@
+<%= Rails.application.config.relative_url_root %>
+
+<ol class="breadcrumb">
+  <li><%= link_to 'Home', root_path %></li>
+  <%- if local_assigns[:directory].present? -%>
+    <%- directory.ancestors.each do |directory| -%>
+      <li><%= link_to directory.name, ilohv_path(directory.path) %></li>
+    <%- end -%>
+    <li class="active"><%= directory.name %></li>
+  <%- end -%>
+</ol>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Size</th>
+      <th>
+        <div class="btn-group btn-group-sm pull-right">
+          <%= link_to new_directory_path(parent_id: local_assigns[:directory]), class: 'btn btn-default' do %>
+            <span class="glyphicon glyphicon-plus"></span> New directory
+          <% end %>
+          <%= link_to new_file_path(parent_id: local_assigns[:directory]), class: 'btn btn-default' do %>
+            <span class="glyphicon glyphicon-upload"></span> New file
+          <% end %>
+        </div>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <%- if local_assigns[:directory].present? -%>
+      <%= render 'ilohv/directories/directory', directory_name: '..', directory_path: ilohv_path(directory.parent.try(:path)) %>
+    <%- end -%>
+    <%- if directories.present? || files.present? -%>
+      <%= render partial: 'ilohv/directories/directory', collection: directories if directories.present? %>
+      <%= render partial: 'ilohv/files/file', collection: files if files.present? %>
+    <%- else -%>
+      <tr>
+        <td></td>
+        <td colspan="4">This directory is currently empty.</td>
+      </tr>
+    <%- end -%>
+  </tbody>
+</table>

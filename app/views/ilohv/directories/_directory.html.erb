@@ -1,0 +1,14 @@
+<tr>
+  <td></td>
+  <td><%= link_to local_assigns[:directory_name] || directory.name, local_assigns[:directory_path] || ilohv_path(directory.full_path) %></td>
+  <td></td>
+  <td></td>
+  <td>
+    <%- if local_assigns[:directory].present? -%>
+      <div class="btn-group btn-group-xs">
+        <%= link_to 'Edit', edit_directory_path(directory), class: 'btn btn-default' %>
+        <%= link_to 'Delete', directory_path(directory), method: :delete, data: { confirm: 'Really delete? All subdirectories and files will be deleted as well.' }, class: 'btn btn-danger' %>
+      </div>
+    <%- end -%>
+  </td>
+</tr>

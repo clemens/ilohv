@@ -3,5 +3,10 @@
   <td><%= file.name %></td>
   <td><%= file.content_type %></td>
   <td><%= file.size %></td>
-  <td></td>
+  <td>
+    <div class="btn-group btn-group-xs">
+      <%= link_to 'Edit', edit_file_path(file), class: 'btn btn-default' %>
+      <%= link_to 'Delete', file_path(file), method: :delete, data: { confirm: 'Really delete?' }, class: 'btn btn-danger' %>
+    </div>
+  </td>
 </tr>

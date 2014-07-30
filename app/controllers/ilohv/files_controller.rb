@@ -45,7 +45,7 @@ module Ilohv
 
     def build_file
       scope = params[:parent_id] ? Directory.find(params[:parent_id]).files : File
-      @file = scope.new
+      @file = scope.new(type: 'Ilohv::File')
     end
 
     def file_params

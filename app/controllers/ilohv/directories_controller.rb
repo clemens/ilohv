@@ -49,7 +49,7 @@ module Ilohv
 
     def build_directory
       scope = params[:parent_id] ? Directory.find(params[:parent_id]).directories : Directory
-      @directory = scope.new
+      @directory = scope.new(type: 'Ilohv::Directory')
     end
 
     def directory_params

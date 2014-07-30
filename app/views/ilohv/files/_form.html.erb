@@ -1,4 +1,4 @@
-<%= form_for(@file, as: :file, url: files_path, html: { class: 'form-horizontal' }) do |f| %>
+<%= form_for(@file, as: :file, html: { class: 'form-horizontal' }) do |f| %>
   <% if @file.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@file.errors.count, "error") %> prohibited this file from being saved:</h2>

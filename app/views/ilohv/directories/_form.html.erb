@@ -1,4 +1,4 @@
-<%= form_for(@directory, as: 'directory', url: directories_path, html: { class: 'form-horizontal' }) do |f| %>
+<%= form_for(@directory, as: :directory, html: { class: 'form-horizontal' }) do |f| %>
   <% if @directory.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@directory.errors.count, "error") %> prohibited this directory from being saved:</h2>

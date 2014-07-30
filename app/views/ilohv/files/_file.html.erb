@@ -1,5 +1,5 @@
 <tr>
-  <td></td>
+  <td><%= image_tag("ilohv/file_types/#{file.extension}.png") %></td>
   <td><%= link_to file.name, ilohv_path(file.full_path) %></td>
   <td><%= file.content_type %></td>
   <td><%= number_to_human_size(file.size) %></td>

@@ -41,7 +41,7 @@ module Ilohv
     private
 
     def set_file
-      @file = params[:id] ? File.find(params[:id]) : File.find_by_full_path(params[:path])
+      @file = params[:id] ? File.find(params[:id]) : File.find_by_full_path(params[:full_path])
     end
 
     def build_file

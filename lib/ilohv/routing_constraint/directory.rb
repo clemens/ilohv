@@ -2,7 +2,10 @@ module Ilohv
   module RoutingConstraint
     class Directory
       def matches?(request)
-        Ilohv::Directory.find_by_full_path(request.parameters['path'])
+        path = request.parameters['path'].dup
+        request.env['action_dispatch.request.request_parameters']['full_path'] = path
+
+        Ilohv::Directory.find_by_full_path(path)
       end
     end
   end

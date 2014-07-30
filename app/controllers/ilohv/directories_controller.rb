@@ -44,7 +44,7 @@ module Ilohv
     private
 
     def set_directory
-      @directory = params[:id] ? Directory.find(params[:id]) : Directory.find_by_full_path(params[:path])
+      @directory = params[:id] ? Directory.find(params[:id]) : Directory.find_by_full_path(params[:full_path])
     end
 
     def build_directory

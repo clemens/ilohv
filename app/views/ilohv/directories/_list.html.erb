@@ -1,10 +1,8 @@
-<%= Rails.application.config.relative_url_root %>
-
 <ol class="breadcrumb">
   <li><%= link_to 'Home', root_path %></li>
   <%- if local_assigns[:directory].present? -%>
     <%- directory.ancestors.each do |directory| -%>
-      <li><%= link_to directory.name, ilohv_path(directory.path) %></li>
+      <li><%= link_to directory.name, ilohv_path(directory.full_path) %></li>
     <%- end -%>
     <li class="active"><%= directory.name %></li>
   <%- end -%>

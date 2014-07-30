@@ -4,7 +4,7 @@ module Ilohv
 
     store :meta_data, accessors: [:content_type, :size, :original_filename, :extension]
 
-    before_validation :extract_meta_data
+    before_validation :extract_meta_data, prepend: true
 
     def name
       "#{super}.#{extension}"

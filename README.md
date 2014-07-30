@@ -1,14 +1,14 @@
-= ilohv
+# ilohv
 
 ilohv is a simple file manager, implemented as a mountable engine for Rails apps.
 
-== Dat name, though?
+## Dat name, though?
 
 ```
 ruby -e "puts 'ilohv'.chars.map { |c| (c.ord - 3).chr }.join"
 ```
 
-== Usage
+## Usage
 
 ilohv requires Rails version 3.2.1 or higher. This is due to the fact that it uses Rails' [ActiveRecord::Store](http://apidock.com/rails/ActiveRecord/Store) feature which was added in that version.
 
@@ -29,7 +29,7 @@ mount Ilohv::Engine, at: Ilohv::Engine.config.url_root
 
 ilohv is then usable at the specified URL root, e.g. `http://localhost:3000/admin/files`.
 
-== Additional configuration
+## Additional configuration
 
 ilohv makes no assumptions on how or where you want to store your files: It uses CarrierWave underneath and the configuration is entirely up to you and your application.
 
@@ -50,7 +50,7 @@ end
 
 Again, check the [CarrierWave readme](https://github.com/carrierwaveuploader/carrierwave#carrierwave) for details.
 
-== Styling
+## Styling
 
 ilohv sports a simple interface based on [Twitter Bootstrap 3](http://getbootstrap.com/) classes. If your application already uses Bootstrap, you should be good to go. If not, you have three options:
 
@@ -58,7 +58,7 @@ ilohv sports a simple interface based on [Twitter Bootstrap 3](http://getbootstr
 - Add CSS for the selectors being used.
 - Override ilohv's views as you see fit by putting your own templates in app/views/ilohv.
 
-== API
+## API
 
 ilohv provides a simple API that exposes directories and their files as JSON. You can query the API like so:
 
@@ -91,14 +91,14 @@ end
 
 Input validation, authentication/authorization and all that jazz should be done in your application(s) – ilohv just exposes directories, you're responsible for everything else.
 
-== TODO
+## TODO
 
 - add some tests
 - properly clean directory and file names
 - prevent duplicate names for directories and files and/or think about some smart storage strategy (e.g. UUIDs or MD5 hashes as file names)
 - use proper paths for new/create/edit/update/destroy routes (no IDs)
 
-== Credits
+## Credits
 
 © 2014 Clemens Kofler, licensed under the MIT License.
 

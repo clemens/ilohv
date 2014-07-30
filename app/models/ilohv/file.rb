@@ -6,6 +6,8 @@ module Ilohv
 
     before_validation :extract_meta_data, prepend: true
 
+    delegate :url, to: :file
+
     def name
       "#{super}.#{extension}"
     end

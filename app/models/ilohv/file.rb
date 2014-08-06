@@ -4,7 +4,7 @@ module Ilohv
 
     store :meta_data, accessors: [:content_type, :size, :original_filename, :extension]
 
-    before_validation :extract_meta_data, prepend: true
+    before_validation :extract_meta_data, prepend: true, if: -> { file.present? && file_changed? }
 
     delegate :url, to: :file
 
@@ -20,12 +20,10 @@ module Ilohv
     private
 
     def extract_meta_data
-      if file.present? && file_changed?
-        self.content_type = file.file.content_type
-        self.size = file.file.size
-        self.original_filename = file.file.original_filename
-        self.extension = ::File.extname(file.file.original_filename)[1..-1]
-      end
+      self.content_type = file.file.content_type
+      self.size = file.file.size
+      self.original_filename = file.file.original_filename
+      self.extension = ::File.extname(file.file.original_filename)[1..-1]
     end
 
   end

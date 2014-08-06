@@ -39,7 +39,7 @@
 
   <div class="form-group">
     <div class="col-lg-offset-2 col-lg-10">
-      <%= f.submit class: 'btn btn-primary' %> or
+      <%= f.submit id: 'save-button', class: 'btn btn-primary' %> or
       <%= link_to 'cancel', @file.parent ? ilohv_path(@file.parent.path) : root_path %>
     </div>
   </div>

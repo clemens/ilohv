@@ -21,10 +21,10 @@
           <th>Size</th>
           <th>
             <div class="btn-group btn-group-sm pull-right">
-              <%= link_to new_directory_path(parent_id: local_assigns[:directory]), class: 'btn btn-default' do %>
+              <%= link_to new_directory_path(parent_id: local_assigns[:directory]), id: 'new-directory-button', class: 'btn btn-default' do %>
                 <span class="glyphicon glyphicon-plus"></span> New directory
               <% end %>
-              <%= link_to new_file_path(parent_id: local_assigns[:directory]), class: 'btn btn-default' do %>
+              <%= link_to new_file_path(parent_id: local_assigns[:directory]), id: 'new-file-button', class: 'btn btn-default' do %>
                 <span class="glyphicon glyphicon-upload"></span> New file
               <% end %>
             </div>

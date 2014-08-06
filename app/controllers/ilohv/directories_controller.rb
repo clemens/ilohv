@@ -44,11 +44,11 @@ module Ilohv
     private
 
     def set_directory
-      @directory = params[:id] ? Directory.find(params[:id]) : Directory.find_by_full_path(params[:full_path])
+      @directory = params[:id].present? ? Directory.find(params[:id]) : Directory.find_by_full_path(params[:full_path])
     end
 
     def build_directory
-      scope = params[:parent_id] ? Directory.find(params[:parent_id]).directories : Directory
+      scope = params[:parent_id].present? ? Directory.find(params[:parent_id]).directories : Directory
       @directory = scope.new(type: 'Ilohv::Directory')
     end
 

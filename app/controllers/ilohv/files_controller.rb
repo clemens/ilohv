@@ -41,11 +41,11 @@ module Ilohv
     private
 
     def set_file
-      @file = params[:id] ? File.find(params[:id]) : File.find_by_full_path(params[:full_path])
+      @file = params[:id].present? ? File.find(params[:id]) : File.find_by_full_path(params[:full_path])
     end
 
     def build_file
-      scope = params[:parent_id] ? Directory.find(params[:parent_id]).files : File
+      scope = params[:parent_id].present? ? Directory.find(params[:parent_id]).files : File
       @file = scope.new(type: 'Ilohv::File')
     end
 

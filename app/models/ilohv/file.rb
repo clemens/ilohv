@@ -13,11 +13,6 @@ module Ilohv
 
     delegate :url, to: :file
 
-    def slug
-      # TODO use stringex or something
-      name.downcase.strip.gsub(' ', '-').gsub(/[^\.\w-]/, '') if name.present?
-    end
-
     private
 
     def calculate_name

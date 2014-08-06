@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency "jbuilder"
   s.add_dependency "ancestry"
   s.add_dependency "carrierwave"
+  s.add_dependency "babosa"
 
   s.add_development_dependency "pg"
   s.add_development_dependency "rspec-rails"

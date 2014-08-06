@@ -1,4 +1,5 @@
 require_dependency 'ancestry'
+require_dependency 'babosa'
 
 module Ilohv
   class Node < ActiveRecord::Base
@@ -12,8 +13,16 @@ module Ilohv
     before_validation :calculate_full_path
 
     def slug
-      # TODO use stringex or something
-      name.downcase.strip.gsub(' ', '-').gsub(/[^\w-]/, '') if name.present?
+      return unless name.present?
+
+      # reproducing babosa's #normalize! without cleaning non-word characters because we need the . in filenames
+      slug = name.dup.to_identifier
+      slug.transliterate!
+      slug.clean!
+      slug.downcase!
+      slug.with_separators!
+
+      slug
     end
 
     def other_with_same_path?

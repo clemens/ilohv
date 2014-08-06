@@ -56,4 +56,38 @@ shared_examples_for "a node" do
       end
     end
   end
+
+  describe "instance methods" do
+    describe "#slug" do
+      it "uses dashes instead of spaces" do
+        node = build(factory_name, name: 'a node')
+
+        expect(node.slug).to eq 'a-node'
+      end
+
+      it "strips leading and trailing spaces" do
+        node = build(factory_name, name: ' a-node ')
+
+        expect(node.slug).to eq 'a-node'
+      end
+
+      it "downcases the name" do
+        node = build(factory_name, name: 'A-Node')
+
+        expect(node.slug).to eq 'a-node'
+      end
+
+      it "keeps dots" do
+        node = build(factory_name, name: 'a.node')
+
+        expect(node.slug).to eq 'a.node'
+      end
+
+      it "transliterates non-ASCII characters to base Latin" do
+        node = build(factory_name, name: 'ätzend')
+
+        expect(node.slug).to eq 'atzend'
+      end
+    end
+  end
 end

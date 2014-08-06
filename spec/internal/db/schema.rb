@@ -6,6 +6,7 @@ ActiveRecord::Schema.define(version: 20140730092901) do
     t.string   "name"
     t.text     "full_path"
     t.string   "file"
+    t.string   "file_token"
     t.text     "meta_data"
     t.text     "ancestry"
     t.datetime "created_at"
@@ -14,6 +15,7 @@ ActiveRecord::Schema.define(version: 20140730092901) do
 
   add_index "ilohv_nodes", ["ancestry"], name: "index_ilohv_nodes_on_ancestry", using: :btree
   add_index "ilohv_nodes", ["full_path"], name: "index_ilohv_nodes_on_full_path", using: :btree
+  add_index "ilohv_nodes", ["file_token"], name: "index_ilohv_nodes_on_file_token", using: :btree, unique: true
   add_index "ilohv_nodes", ["name"], name: "index_ilohv_nodes_on_name", using: :btree
 
 end

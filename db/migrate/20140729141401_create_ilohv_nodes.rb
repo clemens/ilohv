@@ -7,6 +7,7 @@ class CreateIlohvNodes < ActiveRecord::Migration
       t.text :full_path
 
       t.string :file
+      t.string :file_token
       t.text :meta_data
 
       t.text :ancestry
@@ -16,6 +17,7 @@ class CreateIlohvNodes < ActiveRecord::Migration
 
     add_index :ilohv_nodes, :name
     add_index :ilohv_nodes, :full_path
+    add_index :ilohv_nodes, :file_token, unique: true
     add_index :ilohv_nodes, :ancestry
   end
 end

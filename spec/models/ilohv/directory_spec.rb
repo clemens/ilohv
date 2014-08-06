@@ -1,14 +1,14 @@
 require 'spec_helper'
 
 describe Ilohv::Directory do
-  subject { described_class.new }
+  subject { build(:directory) }
 
   it_behaves_like "a node"
 
   describe "associations" do
-    let!(:directory) { described_class.create(name: 'Test Directory') }
-    let!(:subdirectory) { described_class.create(name: 'Subdirectory', parent: directory) }
-    let!(:file) { Ilohv::File.create(name: 'File', parent: directory) }
+    let!(:directory) { create(:directory) }
+    let!(:subdirectory) { create(:directory, parent: directory) }
+    let!(:file) { create(:file, parent: directory) }
 
     it "finds subdirectories" do
       expect(directory.directories).to match_array [subdirectory]

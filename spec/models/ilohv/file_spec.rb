@@ -4,7 +4,7 @@ describe Ilohv::File do
   it_behaves_like "a node"
 
   describe "callbacks" do
-    let(:file) { Ilohv::File.new }
+    let(:file) { build(:file) }
 
     describe "#extract_meta_data" do
       it "extracts the file's meta data" do
@@ -40,6 +40,41 @@ describe Ilohv::File do
           expect(file).to_not receive(:extract_meta_data)
 
           file.valid?
+        end
+      end
+    end
+
+    describe "#calculate_name" do
+      let(:attributes) { { extension: 'bar' } }
+      let(:file) { build(:file, attributes) }
+
+      it "appends the extension to the name" do
+        file.name = 'foo'
+
+        file.valid?
+
+        expect(file.name).to eq 'foo.bar'
+      end
+
+      context "when the extension is blank" do
+        let(:attributes) { super().merge(extension: nil) }
+
+        it "doesn't change the name" do
+          file.name = 'foo'
+
+          file.valid?
+
+          expect(file.name).to eq 'foo'
+        end
+      end
+
+      context "when the name is blank" do
+        let(:attributes) { super().merge(name: nil, original_filename: 'foo.bar') }
+
+        it "uses the original_filename" do
+          file.valid?
+
+          expect(file.name).to eq 'foo.bar'
         end
       end
     end

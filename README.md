@@ -107,9 +107,6 @@ Input validation, authentication/authorization and all that jazz should be done 
 
 ## TODO
 
-- add some tests
-- properly clean directory and file names
-- prevent duplicate names for directories and files and/or think about some smart storage strategy (e.g. UUIDs or MD5 hashes as file names)
 - use proper paths for new/create/edit/update/destroy routes (no IDs)
 
 ## Credits

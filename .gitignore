@@ -3,6 +3,3 @@ Gemfile.lock
 .bundle/
 log/*.log
 pkg/
-
-spec/internal/log
-spec/internal/public

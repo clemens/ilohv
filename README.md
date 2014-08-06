@@ -31,11 +31,25 @@ ilohv is then usable at the specified URL root, e.g. `http://localhost:3000/admi
 
 ## Additional configuration
 
-ilohv makes no assumptions on how or where you want to store your files: It uses CarrierWave underneath and the configuration is entirely up to you and your application.
+ilohv uses CarrierWave underneath and the configuration is entirely up to you and your application.
+
+There are no assumptions on how or where you want to store your files except for generating unique filenames. This is done to ensure that your application doesn't accidentally overwrite files with the same name if your storage settings don't ensure unique file paths. By default, UUIDs are generated when a file is being created (using `SecureRandom.uuid`). You can turn UUID-based filenames off or change it by just overriding the `Ilohv::FileUploader#filename` method:
+
+``` ruby
+# config/initializers/ilohv.rb
+Ilohv::FileUploader.class_eval do
+  def filename
+    super # restore default behavior
+  end
+end
+
+**In this case, it's up to your application to ensure that name clashes are prevented.**
+
+All other configuration (e.g. where your files are stored, which file types are allowed...) is entirely up to your application.
 
 ilohv will pick up your default CarrierWave configuration if you're already using CarrierWave in your application. Otherwise you can just add an initializer to configure CarrierWave (check the [Configuration section of the CarrierWave readme](https://github.com/carrierwaveuploader/carrierwave#configuring-carrierwave) for details).
 
-You can also have a specific configuration for just the `Ilohv::FileUploader`. If you want to take this approach, just use `class_eval` to do the configuration:
+You can also have a specific configuration for just the `Ilohv::FileUploader`:
 
 ``` ruby
 # config/initializers/ilohv.rb

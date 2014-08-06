@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 shared_examples_for "a node" do
   let(:factory_name) { described_class.name.demodulize.downcase }
 

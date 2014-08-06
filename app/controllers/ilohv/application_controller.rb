@@ -1,6 +1,7 @@
 module Ilohv
   # TODO make parent controller configurable (like in Devise)
-  class ApplicationController < ::ApplicationController
+  base_controller = defined?(::ApplicationController) ? ::ApplicationController : ActionController::Base
+  class ApplicationController < base_controller
     private
 
     def ilohv_path(path)

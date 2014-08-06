@@ -4,7 +4,8 @@ shared_examples_for "a node" do
   describe "validations" do
     describe "name" do
       it "requires a name" do
-        node = build(factory_name, name: nil)
+        node = build(factory_name)
+        allow(node).to receive(:name) { nil } # needed since before_validation hooks will try to set the name
 
         expect(node).to_not be_valid
         expect(node.errors[:name].size).to eq 1

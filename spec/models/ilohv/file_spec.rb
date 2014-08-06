@@ -1,7 +1,18 @@
 require 'spec_helper'
 
 describe Ilohv::File do
+  subject { build(:file) }
+
   it_behaves_like "a node"
+
+  describe "validations" do
+    it "requires a file" do
+      file = build(:file, file: nil)
+
+      expect(file).to_not be_valid
+      expect(file.errors[:file].size).to eq 1
+    end
+  end
 
   describe "callbacks" do
     let(:file) { build(:file) }
@@ -46,7 +57,7 @@ describe Ilohv::File do
 
     describe "#calculate_name" do
       let(:attributes) { { extension: 'bar' } }
-      let(:file) { build(:file, attributes) }
+      let(:file) { build(:file, attributes).tap { |file| allow(file).to receive(:extract_meta_data) } } # prevent meta data from being extracted
 
       it "appends the extension to the name" do
         file.name = 'foo'

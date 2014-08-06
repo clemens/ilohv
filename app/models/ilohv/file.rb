@@ -4,6 +4,8 @@ module Ilohv
 
     store :meta_data, accessors: [:content_type, :size, :original_filename, :extension]
 
+    validates :file, presence: true
+
     before_validation :calculate_name, prepend: true
     before_validation :extract_meta_data, prepend: true, if: -> { file.present? && file_changed? }
 

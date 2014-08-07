@@ -27,10 +27,11 @@ Ilohv::Engine.config.url_root = '/admin/files'
 mount Ilohv::Engine, at: Ilohv::Engine.config.url_root
 ```
 
-Copy the migrations by running Rails' default Rake task for copying engine migrations:
+Copy the migrations by running Rails' default Rake task for copying engine migrations and run them:
 
 ```
 (bundle exec) rake ilohv:install:migrations
+(bundle exec) rake db:migrate
 ```
 
 *Note: You need to run this Rake task whenever you update ilohv to make sure your app has all necessary migrations.*

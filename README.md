@@ -50,6 +50,7 @@ Ilohv::FileUploader.class_eval do
     super # restore default behavior
   end
 end
+```
 
 **In this case, it's up to your application to ensure that name clashes are prevented.**
 

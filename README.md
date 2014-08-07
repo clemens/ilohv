@@ -18,7 +18,7 @@ To use ilohv add it to your Gemfile, configure the URL root in an initializer an
 
 ``` ruby
 # Gemfile:
-gem 'ilohv'
+gem 'ilohv', github: 'clemens/ilohv'
 
 # config/initializers/ilohv.rb
 Ilohv::Engine.config.url_root = '/admin/files'
@@ -26,6 +26,14 @@ Ilohv::Engine.config.url_root = '/admin/files'
 # config/routes.rb
 mount Ilohv::Engine, at: Ilohv::Engine.config.url_root
 ```
+
+Copy the migrations by running Rails' default Rake task for copying engine migrations:
+
+```
+(bundle exec) rake ilohv:install:migrations
+```
+
+*Note: You need to run this Rake task whenever you update ilohv to make sure your app has all necessary migrations.*
 
 ilohv is then usable at the specified URL root, e.g. `http://localhost:3000/admin/files`.
 

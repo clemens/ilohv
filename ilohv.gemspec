@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.description = "Rails-mountable File Manager"
   s.license     = "MIT"
 
-  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*", "config.ru", "MIT-LICENSE", "Rakefile", "README.md"]
 
   s.required_ruby_version = ">= 1.9"
 

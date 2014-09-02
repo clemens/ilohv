@@ -1,7 +1,5 @@
 module Ilohv
-  # TODO make parent controller configurable (like in Devise)
-  base_controller = defined?(::ApplicationController) ? ::ApplicationController : ActionController::Base
-  class ApplicationController < base_controller
+  class ApplicationController < Ilohv.parent_controller.constantize
     private
 
     def ilohv_path(path)

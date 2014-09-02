@@ -1,7 +1,8 @@
 require 'ilohv/engine'
-require 'ilohv/config'
 
 require 'carrierwave'
 
 module Ilohv
+  mattr_accessor :parent_controller
+  @@parent_controller = 'ApplicationController'
 end

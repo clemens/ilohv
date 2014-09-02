@@ -1,5 +1,5 @@
 module Ilohv
-  class ApplicationController < Ilohv::Config.parent_controller.constantize
+  class ApplicationController < Ilohv.parent_controller.constantize
     private
 
     def ilohv_path(path)

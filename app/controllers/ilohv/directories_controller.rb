@@ -4,6 +4,7 @@ module Ilohv
   class DirectoriesController < ApplicationController
     before_action :set_directory, only: [:show, :edit, :update, :destroy]
     before_action :build_directory, only: [:new, :create]
+    before_action :set_include_subdirectories, only: [:index, :show]
 
     def index
       @directories = Directory.roots
@@ -57,5 +58,8 @@ module Ilohv
       params[:directory].permit(:name)
     end
 
+    def set_include_subdirectories
+      @include_subdirectories = params[:include_subdirectories]
+    end
   end
 end

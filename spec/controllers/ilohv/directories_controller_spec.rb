@@ -68,5 +68,26 @@ describe Ilohv::DirectoriesController, type: :controller do
         a_hash_including('name' => file_2.name, 'full_path' => file_2.full_path, 'size' => file_2.size, 'content_type' => file_2.content_type, 'extension' => file_2.extension, 'url' => "/files/#{file_2.full_path}", 'direct_url' => file_2.url),
       ]
     end
+
+    it "includes nested directories and files" do
+      file_1 = double(:file, name: 'File 1', full_path: directory.full_path + '/file-1.txt', size: 1234, content_type: 'text/plain', extension: 'txt', url: 'http://example.com/file-1.txt')
+      subdirectory_2 = double(:directory, name: 'Subdirectory 2', full_path: directory.full_path + '/subdirectory-2', files: [file_1], directories: [])
+      subdirectory_1 = double(:directory, name: 'Subdirectory 1', full_path: directory.full_path + '/subdirectory-1', files: [], directories: [subdirectory_2])
+
+      allow(directory).to receive(:directories) { [subdirectory_1] }
+
+      get :show, id: 1, format: :json, include_subdirectories: true
+      json = JSON.parse(response.body)
+
+      expect(json['directories']).to match [a_hash_including('name' => subdirectory_1.name, 'full_path' => subdirectory_1.full_path)]
+
+      expect(json['directories'].first['directories']).to match [
+          a_hash_including('name' => subdirectory_2.name, 'full_path' => subdirectory_2.full_path)
+      ]
+
+      expect(json['directories'].first['directories'].first['files']).to match [
+        a_hash_including('name' => file_1.name, 'full_path' => file_1.full_path, 'size' => file_1.size, 'content_type' => file_1.content_type, 'extension' => file_1.extension, 'url' => "/files/#{file_1.full_path}", 'direct_url' => file_1.url),
+      ]
+    end
   end
 end

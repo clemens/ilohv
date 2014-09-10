@@ -79,14 +79,6 @@ describe Ilohv::File do
       let(:attributes) { { extension: 'bar' } }
       let(:file) { build(:file, attributes).tap { |file| allow(file).to receive(:extract_meta_data) } } # prevent meta data from being extracted
 
-      it "appends the extension to the name" do
-        file.name = 'foo'
-
-        file.valid?
-
-        expect(file.name).to eq 'foo.bar'
-      end
-
       context "when the extension is blank" do
         let(:attributes) { super().merge(extension: nil) }
 

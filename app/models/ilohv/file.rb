@@ -16,7 +16,7 @@ module Ilohv
     private
 
     def calculate_name
-      self.name ||= original_filename
+      self.name = original_filename if name.blank?
     end
 
     def extract_meta_data

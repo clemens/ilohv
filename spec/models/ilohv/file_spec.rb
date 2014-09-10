@@ -79,20 +79,8 @@ describe Ilohv::File do
       let(:attributes) { { extension: 'bar' } }
       let(:file) { build(:file, attributes).tap { |file| allow(file).to receive(:extract_meta_data) } } # prevent meta data from being extracted
 
-      context "when the extension is blank" do
-        let(:attributes) { super().merge(extension: nil) }
-
-        it "doesn't change the name" do
-          file.name = 'foo'
-
-          file.valid?
-
-          expect(file.name).to eq 'foo'
-        end
-      end
-
       context "when the name is blank" do
-        let(:attributes) { super().merge(name: nil, original_filename: 'foo.bar') }
+        let(:attributes) { super().merge(name: '', original_filename: 'foo.bar') }
 
         it "uses the original_filename" do
           file.valid?

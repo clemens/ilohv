@@ -26,7 +26,7 @@ feature "Files" do
     click_on 'save-button'
 
     expect(page).to have_content 'A File'
-    expect(directory.files.pluck(:name)).to eq ['A File.jpg']
+    expect(directory.files.pluck(:name)).to eq ['A File']
   end
 
   scenario "Renaming a file in a directory" do

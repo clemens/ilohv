@@ -16,11 +16,7 @@ module Ilohv
     private
 
     def calculate_name
-      self.name = if name.present?
-        extension.present? ? "#{name}.#{extension}" : name
-      else
-        original_filename
-      end
+      self.name = original_filename if name.blank?
     end
 
     def extract_meta_data
